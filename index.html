@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Zootopia Celebration | Allisya's Birthday & Evelyn's Tasyakuran Aqiqah</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Three.js for 3D Ambient Visuals -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Google Fonts: Fredoka & Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Open Graph untuk Share WhatsApp -->
+  <meta property="og:title" content="Zootopia Celebration | Allisya & Evelyn">
+  <meta property="og:description" content="Tasyakuran Aqiqah Evelyn & Birthday Allisya - Minggu, 27 September 2026 di Pos Cluster Ecoscape Paradise Serpong City 2">
+  <meta property="og:image" content="assets/allisya.webp">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            zootopia: {
+              navy: '#091936',
+              policeBlue: '#153266',
+              blue: '#1f538d',
+              sky: '#7dd3fc',
+              carrot: '#ff6b00',
+              nickOrange: '#ea580c',
+              gold: '#f59e0b',
+              amber: '#fbbf24',
+              sun: '#fef08a',
+              pawPink: '#fb7185',
+              pawMint: '#2dd4bf',
+              bgDark: '#050c1e'
+            }
+          },
+          fontFamily: {
+            title: ['Fredoka', 'sans-serif'],
+            sans: ['Nunito', 'sans-serif']
+          },
+          animation: {
+            'bounce-slow': 'bounce 2.6s infinite',
+            'float': 'float 3.5s ease-in-out infinite',
+            'float-delayed': 'float 3.5s ease-in-out 1.75s infinite',
+            'spin-slow': 'spin 18s linear infinite',
+            'pulse-glow': 'pulseGlow 2.5s ease-in-out infinite',
+            'shimmer': 'shimmer 3s infinite linear'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' }
+            },
+            pulseGlow: {
+              '0%, 100%': { filter: 'drop-shadow(0 0 8px rgba(245, 158, 11, 0.4))' },
+              '50%': { filter: 'drop-shadow(0 0 20px rgba(245, 158, 11, 0.8))' }
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background:
+        radial-gradient(ellipse 900px 600px at 50% -8%, rgba(125,211,252,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 700px 500px at 85% 10%, rgba(245,158,11,0.18) 0%, transparent 60%),
+        radial-gradient(circle at 50% 15%, #18386e 0%, #0c1c3d 45%, #040916 100%);
+      color: #1e293b;
+      font-family: 'Nunito', sans-serif;
+      overflow-x: hidden;
+    }
+    /* Subtle paw pattern overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M30 35c3 0 5.5-2.5 5.5-5.5S33 24 30 24s-5.5 2.5-5.5 5.5S27 35 30 35zm12-8c2.8 0 5-2.2 5-5s-2.2-5-5-5-5 2.2-5 5 2.2 5 5 5zm12 8c3 0 5.5-2.5 5.5-5.5S57 24 54 24s-5.5 2.5-5.5 5.5S51 35 54 35zM42 45c4.4 0 8-3.6 8-8s-3.6-8-8-8-8 3.6-8 8 3.6 8 8 8z'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .font-zootopia {
+      font-family: 'Fredoka', cursive, sans-serif;
+    }
+
+    /* 3D Background Canvas - turned subtle for modern clean */
+    #threejs-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.28;
+    }
+
+    /* 3D Card Perspective wrapper */
+    .card-3d-wrapper {
+      perspective: 1000px;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 20px 45px -10px rgba(8, 20, 46, 0.55),
+                  0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+    }
+
+    /* Holographic Shimmer */
+    .hologram-gold {
+      background: linear-gradient(135deg, #f59e0b 0%, #fef08a 25%, #fbbf24 50%, #d97706 75%, #fde047 100%);
+      background-size: 200% 200%;
+      animation: shimmer 4s ease infinite;
+    }
+
+    /* Sound Switcher Pulse */
+    .sound-pulse {
+      box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+      animation: pulse-ring 1.8s infinite;
+    }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
+      70% { box-shadow: 0 0 0 14px rgba(245, 158, 11, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+
+    /* Floating festive icons in background */
+    .floating-ornament {
+      position: fixed;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
+    }
+    /* Modern Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Audio bars */
+    .audio-bar {
+      width: 3px;
+      background: #f59e0b;
+      border-radius: 999px;
+      animation: audioWave 0.6s ease-in-out infinite;
+    }
+    @keyframes audioWave {
+      0%,100% { height: 6px; }
+      50% { height: 14px; }
+    }
+    .audio-bar:nth-child(2) { animation-delay: 0.15s; }
+    .audio-bar:nth-child(3) { animation-delay: 0.3s; }
+    /* CLS fix for pop-out on very small screens */
+    @media (max-width: 375px) {
+      header .absolute.w-32 { width: 6.5rem !important; height: 7.5rem !important; }
+      header .absolute.w-32.sm\:w-36 { width: 7rem !important; height: 8rem !important; }
+    }
+  </style>
+</head>
+<body class="relative min-h-screen flex flex-col items-center justify-start antialiased selection:bg-zootopia-gold selection:text-zootopia-navy">
+
+  <!-- 3D Three.js Ambient Scene Canvas -->
+  <canvas id="threejs-canvas"></canvas>
+
+  <!-- Ambient Zootopia - Subtle Modern (not clutter) -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
+    <img src="assets/judy-solo.webp" alt="Judy Hopps dekor" aria-hidden="true" class="floating-ornament top-6 left-3 w-10 h-14 sm:w-12 sm:h-16 object-contain animate-float opacity-25 hidden sm:block blur-[0.3px]" loading="lazy" width="60" height="80">
+    <img src="assets/nick-solo.webp" alt="Nick Wilde dekor" aria-hidden="true" class="floating-ornament top-20 right-4 w-12 h-12 sm:w-14 sm:h-14 object-contain animate-float-delayed opacity-20 hidden sm:block blur-[0.3px]" loading="lazy" width="60" height="60">
+    <img src="assets/judy-nick-duo.webp" alt="Judy & Nick duo dekor" aria-hidden="true" class="floating-ornament bottom-28 left-1/2 -translate-x-1/2 w-20 h-16 object-contain animate-float opacity-15 hidden md:block blur-[0.4px]" loading="lazy" width="80" height="64">
+  </div>
+
+  <!-- Welcome Screen Overlay / Cover Undangan (Tepat di atas, responsif & langsung terlihat) -->
+  <div id="welcome-modal" class="fixed inset-0 z-50 w-full h-full flex items-center justify-center p-4 bg-gradient-to-b from-[#050f24]/95 via-[#0b214a]/95 to-[#040916]/95 backdrop-blur-xl overflow-y-auto transition-all duration-700 ease-out">
+
+    <!-- Glowing Backlights -->
+    <div class="absolute w-72 sm:w-96 h-72 sm:h-96 top-0 left-1/2 -translate-x-1/2 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute w-72 sm:w-96 h-72 sm:h-96 bottom-0 left-1/2 -translate-x-1/2 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- Responsive Card Modal -->
+    <div class="relative w-full max-w-[360px] sm:max-w-sm m-auto p-5 sm:p-6 text-center text-white bg-slate-900/90 border-2 border-amber-400 rounded-3xl backdrop-blur-2xl shadow-[0_0_50px_rgba(245,158,11,0.4)] overflow-hidden">
+
+      <!-- Top Decorative Glow Band -->
+      <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-300 via-sky-400 to-amber-300"></div>
+
+      <!-- ZPD Police Badge Header -->
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 mb-2 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-zootopia-navy rounded-full text-[11px] font-black tracking-widest uppercase shadow-md">
+        <i class="fa-solid fa-shield-halved text-zootopia-policeBlue"></i>
+        <span>Official Z.P.D Invitation Pass</span>
+      </div>
+
+      <!-- HERO POLAROID STACK - Evelyn & Allisya Dominant, Judy/Nick Guard -->
+      <div class="relative flex items-center justify-center my-4 h-44 sm:h-48">
+        <!-- Ambient glow behind polaroids -->
+        <div class="absolute w-48 h-32 bg-gradient-to-r from-pink-400/20 via-amber-300/20 to-sky-400/20 rounded-full blur-2xl"></div>
+        <!-- Polaroid Evelyn - Back, rotated -6deg -->
+        <div class="absolute left-8 sm:left-10 top-2 w-28 sm:w-32 bg-white rounded-xl shadow-[0_12px_30px_rgba(0,0,0,0.35)] p-2 pb-6 rotate-[-6deg] border border-pink-100">
+          <div class="w-full h-28 sm:h-32 rounded-lg overflow-hidden bg-gradient-to-b from-pink-50 to-white border border-pink-100 flex items-end justify-center">
+            <img src="assets/evelyn.webp" alt="Baby Evelyn" class="w-full h-full object-contain object-bottom" loading="eager">
+          </div>
+          <p class="font-zootopia text-[10px] font-black text-pink-700 text-center mt-1.5 tracking-wide">EVELYN • Aqiqah</p>
+          <span class="absolute -top-2 -right-2 w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-white text-[10px] shadow-md"><i class="fa-solid fa-heart"></i></span>
+        </div>
+        <!-- Polaroid Allisya - Front, rotated +5deg, dominant -->
+        <div class="absolute right-6 sm:right-8 top-0 w-32 sm:w-36 bg-white rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.4)] p-2 pb-7 rotate-[5deg] border border-amber-200 z-10">
+          <div class="w-full h-32 sm:h-36 rounded-lg overflow-hidden bg-gradient-to-b from-amber-50 to-white border border-amber-100 flex items-end justify-center">
+            <img src="assets/allisya.webp" alt="Allisya Birthday" class="w-full h-full object-contain object-bottom" loading="eager">
+          </div>
+          <p class="font-zootopia text-[11px] font-black text-amber-700 text-center mt-1.5 tracking-wide">ALLISYA • 7th Birthday</p>
+          <span class="absolute -top-2 -left-2 px-2 py-0.5 bg-amber-400 text-zootopia-navy rounded-full text-[8px] font-black shadow-md">★ STAR</span>
+        </div>
+        <!-- Guard Judy - ENLARGED NO FRAME -->
+        <div class="absolute left-0 -top-1 w-20 h-24 z-20 animate-float hidden sm:flex flex-col items-center">
+          <img src="assets/judy-solo.webp" alt="Judy Guard" class="w-20 h-22 object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]" loading="eager">
+          <span class="text-[7px] font-black bg-blue-600 text-white px-1.5 py-0.5 rounded-full -mt-1 shadow">JUDY</span>
+        </div>
+        <!-- Guard Nick - ENLARGED NO FRAME -->
+        <div class="absolute -right-1 -top-1 w-20 h-24 z-20 animate-float-delayed hidden sm:flex flex-col items-center">
+          <img src="assets/nick-solo.webp" alt="Nick Guard" class="w-20 h-22 object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]" loading="eager">
+          <span class="text-[7px] font-black bg-orange-600 text-white px-1.5 py-0.5 rounded-full -mt-1 shadow">NICK</span>
+        </div>
+        <!-- Mobile Judy/Nick mini guard (visible on small) -->
+        <div class="absolute -bottom-1 left-2 flex sm:hidden items-center space-x-1 bg-white/90 backdrop-blur px-1.5 py-1 rounded-full border border-slate-200 shadow">
+          <img src="assets/judy-solo.webp" class="w-5 h-5 object-contain"><span class="text-[8px] font-black text-blue-700">JUDY</span>
+        </div>
+        <div class="absolute -bottom-1 right-2 flex sm:hidden items-center space-x-1 bg-white/90 backdrop-blur px-1.5 py-1 rounded-full border border-slate-200 shadow">
+          <img src="assets/nick-solo.webp" class="w-5 h-5 object-contain"><span class="text-[8px] font-black text-orange-700">NICK</span>
+        </div>
+      </div>
+      <!-- ZPD Case File Label -->
+      <div class="flex items-center justify-center space-x-1.5 mb-2">
+        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+        <span class="text-[9px] font-black tracking-[0.18em] text-emerald-200 uppercase">Case File: Star Performers</span>
+        <span class="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse"></span>
+      </div>
+
+      <!-- Event Title - Modern Scale -->
+      <div class="space-y-1">
+        <h1 class="text-3xl sm:text-[2rem] font-zootopia font-black tracking-[0.04em] text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-100 to-sky-200 drop-shadow-[0_2px_12px_rgba(125,211,252,0.5)] leading-none">
+          ZOOTOPIA
+        </h1>
+        <p class="font-zootopia text-[13px] sm:text-sm font-black tracking-[0.22em] text-amber-200 uppercase -mt-1">Party • 27 • 09 • 26</p>
+        <p class="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-sky-100">
+          Birthday Allisya & Aqiqah Evelyn
+        </p>
+      </div>
+
+      <!-- Date Tag -->
+      <div class="bg-gradient-to-r from-blue-950/90 to-indigo-950/90 p-2.5 rounded-2xl border border-amber-300/40 my-3 text-xs text-amber-200 flex items-center justify-center space-x-2 shadow-inner">
+        <i class="fa-solid fa-calendar-star text-amber-400 text-sm animate-spin-slow"></i>
+        <span class="font-extrabold text-xs sm:text-sm tracking-wide">Minggu, 27 September 2026</span>
+      </div>
+
+      <!-- Interactive 3D Open Button -->
+      <button id="btn-open-invitation" class="group relative w-full py-3.5 px-5 font-zootopia text-base sm:text-lg font-black text-zootopia-navy bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 rounded-2xl shadow-[0_10px_25px_rgba(245,158,11,0.5)] hover:shadow-[0_15px_30px_rgba(245,158,11,0.7)] active:scale-95 transition-all duration-200 flex items-center justify-center space-x-2.5 border-2 border-white cursor-pointer">
+        <span class="relative z-10">BUKA PETUALANGAN</span>
+        <i class="fa-solid fa-envelope-open text-base group-hover:rotate-12 transition-transform"></i>
+      </button>
+
+      <p class="mt-2.5 text-[10px] text-sky-100 flex items-center justify-center space-x-1">
+        <i class="fa-solid fa-sparkles text-amber-300"></i>
+        <span>Sentuh tombol untuk membuka undangan</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- BGM OST Audio (autoplay setelah Buka Petualangan) -->
+  <audio id="bgm-ost" src="assets/ost.mp3" loop preload="metadata" playsinline></audio>
+
+  <!-- Sound Effect Toggle - Pojok Kanan Bawah -->
+  <button id="btn-sound-toggle" aria-label="Nyalakan Musik & Suara" class="fixed bottom-5 right-4 z-40 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md border-2 border-amber-400 text-zootopia-navy shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all sound-pulse">
+    <i id="sound-icon" class="fa-solid fa-volume-high text-amber-600 text-sm"></i>
+  </button>
+
+  <!-- Main Content Container (Terbuka setelah Buka Petualangan ditekan) -->
+  <main id="main-content" class="relative z-10 w-full max-w-md px-4 py-8 pb-28 space-y-6">
+
+    <!-- Hero Card - CHARACTER POP-OUT -->
+    <header class="glass-card rounded-3xl p-6 pt-10 sm:pt-12 text-center relative overflow-visible border-2 border-amber-400/60 shadow-2xl">
+
+      <!-- Top Decorative Accent -->
+      <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-sky-400 via-amber-400 to-orange-500 rounded-t-3xl"></div>
+
+      <!-- Character POP-OUT - ENLARGED AGAIN -->
+      <div class="absolute -top-4 sm:-top-3 -left-3 sm:-left-4 w-32 h-36 sm:w-36 sm:h-40 z-20 pointer-events-none select-none">
+        <img src="assets/judy-solo.webp" alt="Officer Judy" loading="lazy" width="144" height="160" class="w-full h-full object-contain object-bottom drop-shadow-[0_14px_28px_rgba(0,0,0,0.5)]" onerror="this.style.display='none'" />
+      </div>
+      <div class="absolute -top-4 sm:-top-3 -right-3 sm:-right-4 w-32 h-36 sm:w-36 sm:h-40 z-20 pointer-events-none select-none">
+        <img src="assets/nick-solo.webp" alt="Nick Wilde" loading="lazy" width="144" height="160" class="w-full h-full object-contain object-bottom drop-shadow-[0_14px_28px_rgba(0,0,0,0.5)]" onerror="this.style.display='none'" />
+      </div>
+      <!-- Spacer for enlarged pop-out -->
+      <div class="h-8 sm:h-6"></div>
+
+      <!-- Animated Police Shield Badge -->
+      <div class="inline-flex items-center space-x-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-300 text-zootopia-blue text-xs font-black uppercase tracking-widest mb-3 shadow-sm">
+        <i class="fa-solid fa-paw text-amber-500 animate-bounce-slow"></i>
+        <span>Zootopia Special Celebration</span>
+      </div>
+
+      <!-- Celebrants Name - Modern Scale -->
+      <h2 class="text-[2.2rem] sm:text-4xl font-zootopia font-black leading-none tracking-tight drop-shadow-sm">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-zootopia-navy via-blue-800 to-zootopia-navy">Allisya</span>
+        <span class="text-zootopia-carrot font-black">&</span>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 via-pink-500 to-zootopia-navy">Evelyn</span>
+      </h2>
+
+      <p class="text-[11px] font-black text-slate-500 tracking-[0.16em] uppercase mt-1.5">
+        Two Blessed Milestones • One Happy Adventure
+      </p>
+
+      <!-- Event Badges -->
+      <div class="flex items-center justify-center gap-2 my-4">
+        <div class="flex items-center space-x-1 px-3 py-1.5 bg-amber-100/90 border border-amber-300 rounded-full text-xs font-extrabold text-amber-900 shadow-sm">
+          <i class="fa-solid fa-cake-candles text-zootopia-carrot"></i>
+          <span>Birthday Allisya</span>
+        </div>
+        <div class="flex items-center space-x-1 px-3 py-1.5 bg-pink-100/90 border border-pink-300 rounded-full text-xs font-extrabold text-pink-900 shadow-sm">
+          <i class="fa-solid fa-baby text-pink-500"></i>
+          <span>Aqiqah Evelyn</span>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-600 leading-relaxed max-w-xs mx-auto">
+        Dengan penuh rasa syukur kepada Allah SWT dan sukacita yang mendalam, kami mengundang Bapak/Ibu/Sahabat tercinta untuk hadir dan memberikan doa restu bagi kedua putri kami.
+      </p>
+
+      <!-- Clawhauser Banner - MAX ENLARGED -->
+      <div class="mt-4 pt-3 border-t border-slate-200/80 flex items-center justify-center space-x-3 text-[11px] font-bold text-slate-600">
+        <img src="assets/clawhauser.webp" alt="Officer Clawhauser" class="w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem] object-contain drop-shadow-lg" loading="lazy">
+        <span class="text-center leading-tight">"Anyone can be anything<br class="sm:hidden"> in Zootopia!"</span>
+        <img src="assets/judy-nick-duo.webp" class="w-11 h-11 object-contain opacity-80 hidden sm:block drop-shadow" loading="lazy">
+      </div>
+    </header>
+
+    <!-- Guest of Honor - MODERN BENTO (Allisya Hero Dominant) -->
+    <section class="grid grid-cols-5 gap-3">
+      <!-- Allisya HERO - spans 3 cols -->
+      <div class="col-span-3 glass-card rounded-3xl p-3 text-center border-2 border-amber-300 shadow-xl relative overflow-hidden group hover:shadow-2xl transition-all flex flex-col">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-orange-400 to-amber-300"></div>
+        <div class="absolute -top-8 -right-8 w-20 h-20 bg-amber-200 rounded-full opacity-30 blur-xl"></div>
+        <div class="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden bg-gradient-to-b from-amber-50 via-white to-orange-50/50 border border-amber-200 shadow-inner flex items-end justify-center p-1">
+          <img src="assets/allisya.webp" alt="Allisya - Birthday" class="w-full h-full object-contain object-bottom group-hover:scale-[1.03] transition-transform duration-500" loading="lazy">
+          <div class="absolute bottom-1 left-1 flex items-center space-x-1.5 bg-white/95 backdrop-blur px-2 py-1 rounded-full shadow">
+            <img src="assets/nick-solo.webp" alt="Nick" class="w-11 h-11 object-contain drop-shadow-lg"> <span class="text-[8px] font-black text-amber-800">NICK'S CREW</span>
+          </div>
+          <div class="absolute top-1.5 right-1.5 bg-zootopia-navy text-white text-[8px] font-black px-1.5 py-0.5 rounded-md">7 YEARS</div>
+        </div>
+        <div class="mt-3">
+          <h4 class="font-zootopia font-black text-[1.35rem] leading-none text-zootopia-navy tracking-tight">Allisya</h4>
+          <p class="text-[10px] font-black text-amber-700 uppercase tracking-[0.14em]">Birthday Girl • Zootopia Star</p>
+          <div class="mt-1.5 flex items-center justify-center space-x-1">
+            <span class="px-2 py-0.5 bg-amber-100 text-amber-800 rounded-full text-[10px] font-black border border-amber-200">16:30 WIB</span>
+            <span class="px-2 py-0.5 bg-white text-slate-600 rounded-full text-[10px] font-bold border border-slate-200">Cake & Games</span>
+          </div>
+        </div>
+      </div>
+      <!-- Right Stack: Evelyn + Mini Info -->
+      <div class="col-span-2 flex flex-col gap-3">
+        <!-- Evelyn Compact -->
+        <div class="glass-card rounded-3xl p-2.5 text-center border-2 border-pink-300 shadow-xl relative overflow-hidden group hover:shadow-2xl transition-all flex-1">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-400 to-pink-200"></div>
+          <div class="relative w-full h-28 sm:h-32 rounded-2xl overflow-hidden bg-gradient-to-b from-pink-50 to-white border border-pink-200 shadow-inner flex items-end justify-center p-1">
+            <img src="assets/evelyn.webp" alt="Evelyn - Aqiqah" class="w-full h-full object-contain object-bottom group-hover:scale-105 transition-transform duration-300" loading="lazy">
+            <div class="absolute bottom-0.5 right-0.5 w-12 h-12 flex items-center justify-center drop-shadow-lg">
+              <img src="assets/judy-solo.webp" alt="Judy" class="w-12 h-12 object-contain drop-shadow-lg">
+            </div>
+          </div>
+          <div class="mt-2">
+            <h4 class="font-zootopia font-black text-sm text-zootopia-navy leading-none">Evelyn</h4>
+            <p class="text-[9px] font-bold text-pink-600 uppercase tracking-wide">Baby • Aqiqah</p>
+            <span class="inline-block mt-1 px-2 py-0.5 bg-pink-100 text-pink-700 rounded-full text-[9px] font-black border border-pink-200">15:30 WIB</span>
+          </div>
+        </div>
+        <!-- Mini ZPD File Card -->
+        <div class="glass-card rounded-2xl p-3 border border-sky-200 shadow-md bg-gradient-to-b from-sky-50 to-white">
+          <div class="flex items-center space-x-2 mb-1.5">
+            <img src="assets/judy-nick-duo.webp" class="w-8 h-8 object-contain">
+            <div>
+              <p class="text-[9px] font-black text-zootopia-blue uppercase tracking-wide leading-none">ZPD Case File</p>
+              <p class="text-[10px] font-bold text-slate-600">#2026-0927</p>
+            </div>
+          </div>
+          <p class="text-[10px] font-bold text-slate-600 leading-relaxed">Dua kebahagiaan, satu petualangan. Pilih tim Judy atau Nick!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zootopia Duo Divider -->
+    <div class="flex items-center justify-center space-x-2 py-1">
+      <div class="h-px w-12 bg-gradient-to-r from-transparent to-amber-300"></div>
+      <img src="assets/judy-nick-duo.webp" alt="Judy & Nick" class="h-11 object-contain opacity-90 drop-shadow" loading="lazy">
+      <div class="h-px w-12 bg-gradient-to-l from-transparent to-sky-300"></div>
+    </div>
+
+    <!-- Countdown Timer Card - MODERN ZPD DASHBOARD -->
+    <section class="glass-card rounded-3xl p-5 text-center shadow-xl border-2 border-amber-300/80 relative overflow-hidden">
+      <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 via-amber-400 to-sky-400"></div>
+      <div class="absolute -top-10 -right-10 w-24 h-24 bg-sky-100 rounded-full opacity-40 blur-xl"></div>
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-zootopia-navy text-white flex items-center justify-center shadow"><i class="fa-solid fa-stopwatch text-amber-300 text-xs"></i></div>
+          <div class="text-left">
+            <h3 class="font-zootopia font-black text-xs text-zootopia-navy uppercase tracking-wider leading-none">Waktu Menuju</h3>
+            <p class="text-[10px] font-black text-zootopia-carrot uppercase tracking-widest">Hari Bahagia</p>
+          </div>
+        </div>
+        <img src="assets/judy-solo.webp" class="w-14 h-14 object-contain drop-shadow-lg hidden sm:block" loading="lazy" alt="">
+      </div>
+
+      <!-- Countdown Numbers Grid - ENLARGED -->
+      <div class="grid grid-cols-4 gap-2 text-center" id="countdown-grid">
+        <div class="bg-gradient-to-b from-sky-50 to-blue-100/80 p-3 rounded-2xl border border-sky-200 shadow-inner">
+          <span id="days" class="font-zootopia text-3xl sm:text-[2rem] font-black text-zootopia-blue block leading-none">00</span>
+          <span class="text-[10px] uppercase font-extrabold text-slate-600">Hari</span>
+        </div>
+        <div class="bg-gradient-to-b from-sky-50 to-blue-100/80 p-3 rounded-2xl border border-sky-200 shadow-inner">
+          <span id="hours" class="font-zootopia text-3xl sm:text-[2rem] font-black text-zootopia-blue block leading-none">00</span>
+          <span class="text-[10px] uppercase font-extrabold text-slate-600">Jam</span>
+        </div>
+        <div class="bg-gradient-to-b from-sky-50 to-blue-100/80 p-3 rounded-2xl border border-sky-200 shadow-inner">
+          <span id="minutes" class="font-zootopia text-3xl sm:text-[2rem] font-black text-zootopia-blue block leading-none">00</span>
+          <span class="text-[10px] uppercase font-extrabold text-slate-600">Menit</span>
+        </div>
+        <div class="bg-gradient-to-b from-amber-50 to-orange-100/80 p-3 rounded-2xl border border-amber-200 shadow-inner">
+          <span id="seconds" class="font-zootopia text-3xl sm:text-[2rem] font-black text-zootopia-carrot block leading-none">00</span>
+          <span class="text-[10px] uppercase font-extrabold text-slate-600">Detik</span>
+        </div>
+      </div>
+      <!-- Carrot Progress Bar -->
+      <div class="mt-3">
+        <div class="flex items-center justify-between text-[9px] font-black uppercase tracking-wider text-slate-500 mb-1">
+          <span class="flex items-center space-x-1"><i class="fa-solid fa-carrot text-zootopia-carrot"></i><span>Mission Progress</span></span>
+          <span id="progress-label" class="text-zootopia-blue">0% menuju 27 Sep</span>
+        </div>
+        <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200 p-0.5">
+          <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-orange-500 to-zootopia-carrot rounded-full transition-all duration-700" style="width: 18%"></div>
+        </div>
+      </div>
+
+      <!-- Flash the Sloth Playful Note - MAX ENLARGED -->
+      <div class="mt-3.5 flex items-center justify-center space-x-3 text-xs text-slate-700 bg-amber-50 py-2 pl-2 pr-4 rounded-full mx-auto w-fit border border-amber-200 font-bold shadow-sm">
+        <img src="assets/flash.webp" alt="Flash Sloth" class="w-16 h-16 sm:w-18 sm:h-18 object-contain drop-shadow-lg" loading="lazy">
+        <span class="leading-tight text-center">Minggu, 27 September 2026<br class="sm:hidden"><span class="text-amber-700"> Jangan sampai terlewat!</span></span>
+      </div>
+    </section>
+
+    <!-- Tasyakuran Aqiqah - Sacred Header (Tempat Cocok: Pembuka Agenda) -->
+    <div class="text-center">
+      <div class="inline-flex flex-col items-center bg-gradient-to-b from-white to-pink-50/80 backdrop-blur rounded-3xl px-7 py-4 border-2 border-pink-300 shadow-xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-400 via-amber-300 to-pink-400"></div>
+        <span class="text-[11px] font-black tracking-[0.18em] text-pink-600 uppercase">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</span>
+        <h3 class="font-zootopia text-2xl font-black text-zootopia-navy leading-none mt-1">Tasyakuran Aqiqah</h3>
+        <p class="text-xs font-black text-pink-700 tracking-wide mt-0.5">Evelyn • Buah Hati Tercinta</p>
+        <span class="mt-2 px-3 py-1 bg-zootopia-navy text-amber-200 rounded-full text-[10px] font-black tracking-widest">MOHON DOA RESTU</span>
+      </div>
+    </div>
+
+    <!-- Agenda & Rundown Detail Cards -->
+    <section class="space-y-4">
+      <div class="text-center">
+        <span class="font-zootopia text-xs font-black uppercase tracking-widest px-4 py-1.5 bg-white/90 text-zootopia-navy rounded-full shadow-md border border-amber-300">
+          <i class="fa-solid fa-map-pin text-amber-500 mr-1"></i> Rencana Petualangan Acara
+        </span>
+      </div>
+
+      <!-- Sesi 1: Tasyakuran Aqiqah Evelyn - MODERN TIMELINE NO FRAME -->
+      <div class="glass-card rounded-3xl p-0 overflow-hidden border border-pink-200 shadow-xl relative flex">
+        <div class="w-1.5 bg-gradient-to-b from-pink-400 to-pink-300 flex-shrink-0"></div>
+        <div class="flex-1 p-5">
+          <div class="flex items-start justify-between">
+            <div class="space-y-1 flex-1">
+              <span class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-pink-100 text-pink-700">
+                <img src="assets/judy-solo.webp" class="w-4 h-4 object-contain"> <span>SESI 1 • AQIQAH</span>
+              </span>
+              <h4 class="text-xl font-zootopia font-black text-zootopia-navy leading-tight">
+                Tasyakuran Aqiqah Evelyn
+              </h4>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Doa bersama, prosesi berkah pemotongan rambut, & ungkapan syukur keluarga.
+              </p>
+            </div>
+            <img src="assets/evelyn.webp" alt="Evelyn" class="w-24 h-24 sm:w-28 sm:h-28 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)] flex-shrink-0 ml-2 -mr-1">
+          </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-black text-slate-700">
+          <span class="flex items-center text-zootopia-navy">
+            <i class="fa-regular fa-clock text-pink-500 mr-1.5 text-sm"></i>
+            Pukul 15:30 WIB
+          </span>
+          <span class="text-pink-700 bg-pink-50 px-3 py-1 rounded-full text-[11px] border border-pink-200">
+            Sore Penuh Berkah
+          </span>
+        </div>
+        </div>
+      </div>
+
+      <!-- Sesi 2: Birthday Party Allisya - MODERN NO FRAME -->
+      <div class="glass-card rounded-3xl p-0 overflow-hidden border border-amber-200 shadow-xl relative flex">
+        <div class="w-1.5 bg-gradient-to-b from-amber-500 to-orange-400 flex-shrink-0"></div>
+        <div class="flex-1 p-5">
+          <div class="flex items-start justify-between">
+            <div class="space-y-1 flex-1">
+              <span class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-amber-100 text-amber-800">
+                <img src="assets/nick-solo.webp" class="w-4 h-4 object-contain"> <span>SESI 2 • BIRTHDAY</span>
+              </span>
+              <h4 class="text-xl font-zootopia font-black text-zootopia-navy leading-tight">
+                Birthday Party Allisya
+              </h4>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Tiup lilin bersama Judy & Nick, games interaktif seru berhadiah, & kejutan manis!
+              </p>
+            </div>
+            <img src="assets/allisya.webp" alt="Allisya" class="w-24 h-24 sm:w-28 sm:h-28 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)] flex-shrink-0 ml-2 -mr-1">
+          </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-black text-slate-700">
+          <span class="flex items-center text-zootopia-navy">
+            <i class="fa-regular fa-clock text-amber-500 mr-1.5 text-sm"></i>
+            Pukul 16:30 WIB
+          </span>
+          <span class="text-amber-800 bg-amber-50 px-3 py-1 rounded-full text-[11px] border border-amber-200">
+            Hingga Selesai
+          </span>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP Interactive Card -->
+    <section id="rsvp-section" class="glass-card rounded-3xl p-6 shadow-2xl border-2 border-white">
+      <div class="text-center mb-5">
+        <div class="w-14 h-14 mx-auto mb-2 bg-gradient-to-tr from-amber-400 via-orange-400 to-pink-500 text-white rounded-2xl flex items-center justify-center shadow-lg transform rotate-3">
+          <i class="fa-solid fa-ticket text-2xl"></i>
+        </div>
+        <h3 class="text-2xl font-zootopia font-black text-zootopia-navy">
+          Konfirmasi Kehadiran
+        </h3>
+        <p class="text-xs text-slate-600 mt-1">
+          Mohon konfirmasi kehadiran Anda untuk menyempurnakan hidangan & bingkisan yang kami siapkan.
+        </p>
+      </div>
+
+      <form id="rsvp-form" class="space-y-4">
+        <!-- Guest Name Input -->
+        <div>
+          <label class="block text-xs font-black text-slate-700 uppercase tracking-wider mb-1.5" for="guest-name">
+            Nama Tamu / Keluarga <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <i class="fa-solid fa-id-badge absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
+            <input
+              type="text"
+              id="guest-name"
+              required
+              placeholder="Contoh: Om Bagus & Tante Rina"
+              class="w-full pl-10 pr-4 py-3 text-sm rounded-2xl border-2 border-slate-200 focus:border-zootopia-blue focus:ring-4 focus:ring-blue-100 outline-none transition bg-white font-semibold"
+            >
+          </div>
+        </div>
+
+        <!-- Attendance Choice: Hadir vs Tidak Hadir -->
+        <div>
+          <label class="block text-xs font-black text-slate-700 uppercase tracking-wider mb-1.5">
+            Pilihan Kehadiran <span class="text-red-500">*</span>
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+
+            <!-- Button Radio: HADIR -->
+            <label class="cursor-pointer relative">
+              <input type="radio" name="attendance" value="Hadir" id="radio-hadir" class="peer sr-only">
+              <div class="p-3.5 text-center rounded-2xl border-2 border-slate-200 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:bg-slate-50 transition-all flex flex-col items-center justify-center space-y-1">
+                <i class="fa-solid fa-circle-check text-2xl text-slate-300 peer-checked:text-emerald-600 transition-colors"></i>
+                <span class="font-zootopia text-sm font-black text-slate-700 peer-checked:text-emerald-700">Hadir</span>
+                <span class="text-[10px] text-emerald-600 font-bold bg-emerald-100 px-2 py-0.5 rounded-full">Buka Akses Peta</span>
+              </div>
+            </label>
+
+            <!-- Button Radio: TIDAK HADIR -->
+            <label class="cursor-pointer relative">
+              <input type="radio" name="attendance" value="Tidak Hadir" id="radio-tidak" class="peer sr-only">
+              <div class="p-3.5 text-center rounded-2xl border-2 border-slate-200 peer-checked:border-rose-500 peer-checked:bg-rose-50 peer-checked:shadow-[0_0_15px_rgba(244,63,94,0.3)] hover:bg-slate-50 transition-all flex flex-col items-center justify-center space-y-1">
+                <i class="fa-solid fa-circle-xmark text-2xl text-slate-300 peer-checked:text-rose-500 transition-colors"></i>
+                <span class="font-zootopia text-sm font-black text-slate-700 peer-checked:text-rose-700">Tidak Hadir</span>
+                <span class="text-[10px] text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">Kirim Doa Restu</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Guest Pax Selection (Only visible if Hadir) -->
+        <div id="pax-wrapper" class="hidden transition-all duration-300">
+          <label class="block text-xs font-black text-slate-700 uppercase tracking-wider mb-1.5" for="guest-pax">
+            Jumlah Tamu yang Hadir
+          </label>
+          <div class="relative">
+            <i class="fa-solid fa-users absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
+            <select id="guest-pax" class="w-full pl-10 pr-4 py-3 text-sm rounded-2xl border-2 border-slate-200 focus:border-zootopia-blue focus:ring-4 focus:ring-blue-100 outline-none transition bg-white font-bold">
+              <option value="1">1 Orang</option>
+              <option value="2" selected>2 Orang</option>
+              <option value="3">3 Orang</option>
+              <option value="4">4 Orang</option>
+              <option value="5">5+ Orang (Rombongan)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Wishes and Greetings -->
+        <div>
+          <label class="block text-xs font-black text-slate-700 uppercase tracking-wider mb-1.5" for="guest-wishes">
+            Doa & Ucapan untuk Allisya & Evelyn
+          </label>
+          <div class="relative">
+            <textarea
+              id="guest-wishes"
+              rows="3"
+              placeholder="Tuliskan doa kebaikan atau ucapan selamat di sini..."
+              class="w-full p-3.5 text-sm rounded-2xl border-2 border-slate-200 focus:border-zootopia-blue focus:ring-4 focus:ring-blue-100 outline-none transition bg-white font-semibold"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          id="btn-submit-rsvp"
+          class="w-full py-4 px-6 font-zootopia text-base font-black text-white bg-gradient-to-r from-zootopia-policeBlue via-blue-600 to-indigo-800 rounded-2xl shadow-xl hover:shadow-2xl active:scale-95 transition-all duration-200 flex items-center justify-center space-x-2 border-2 border-sky-300/40"
+        >
+          <span>Pilih Kehadiran Dahulu</span>
+          <i class="fa-solid fa-arrow-up text-sm"></i>
+        </button>
+      </form>
+    </section>
+
+    <!-- Location Card: STRICTLY HIDDEN UNTIL 'HADIR' IS SELECTED -->
+    <section id="location-card" class="hidden glass-card rounded-3xl p-6 shadow-2xl border-2 border-emerald-400 transition-all duration-500">
+
+      <!-- Unlocked Badge Header -->
+      <div class="flex items-center space-x-3 mb-4 p-3.5 bg-emerald-50 rounded-2xl border border-emerald-200">
+        <div class="w-11 h-11 rounded-2xl bg-emerald-500 text-white flex items-center justify-center flex-shrink-0 text-xl shadow-md">
+          <i class="fa-solid fa-map-location-dot"></i>
+        </div>
+        <div>
+          <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-200 text-emerald-900 uppercase tracking-wide">
+            Akses Lokasi Dibuka • Welcome!
+          </span>
+          <h4 class="font-zootopia font-black text-slate-800 text-base leading-tight">
+            Pos Cluster Ecoscape — Paradise Serpong City 2
+          </h4>
+        </div>
+      </div>
+
+      <!-- Address Details -->
+      <div class="space-y-1 mb-4 text-xs text-slate-600 bg-slate-50 p-3 rounded-2xl border border-slate-200">
+        <p class="font-extrabold text-zootopia-navy flex items-center space-x-1.5">
+          <i class="fa-solid fa-location-pin text-emerald-600"></i>
+          <span>Alamat Lengkap Acara:</span>
+        </p>
+        <p class="leading-relaxed pl-4">
+          Pos Cluster Ecoscape, Paradise Serpong City 2, Gunung Sindur, Perbatasan Serpong Selatan / Kab. Bogor.
+        </p>
+      </div>
+
+      <!-- Map Embed Container -->
+      <div class="rounded-2xl overflow-hidden border-2 border-emerald-300 shadow-inner bg-slate-100 relative min-h-[300px]">
+        <!-- Loading State for Map -->
+        <div id="map-loading" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-100 z-10 text-slate-500 text-xs">
+          <i class="fa-solid fa-spinner fa-spin text-3xl text-emerald-500 mb-2"></i>
+          <span class="font-bold">Memuat Peta Pos Cluster Ecoscape...</span>
+        </div>
+
+        <!-- Google Maps Iframe (Loads dynamically when Hadir is selected) -->
+        <iframe
+          id="gmaps-iframe"
+          class="w-full h-[320px] border-0 relative z-20"
+          title="Lokasi Pos Cluster Ecoscape Paradise Serpong City 2"
+          loading="eager"
+          allowfullscreen=""
+          referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
+      </div>
+
+      <!-- Direct Action Buttons: Google Maps App & Copy Address -->
+      <div class="mt-4 flex flex-col sm:flex-row gap-2.5">
+        <a
+          href="https://maps.google.com/?q=Pos+Cluster+Ecoscape+Paradise+Serpong+City+2"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex-1 py-3 px-4 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 active:scale-95 text-white rounded-2xl text-xs font-black text-center flex items-center justify-center space-x-2 transition shadow-lg">
+          <i class="fa-solid fa-diamond-turn-right text-sm"></i>
+          <span>Buka di Google Maps App</span>
+        </a>
+
+        <button
+          type="button"
+          id="btn-copy-address"
+          class="py-3 px-4 bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 rounded-2xl text-xs font-bold flex items-center justify-center space-x-1.5 transition border border-slate-300">
+          <i class="fa-regular fa-copy"></i>
+          <span>Salin Alamat</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Live Guest Count & Attendance Board -->
+    <section class="glass-card rounded-3xl p-6 shadow-2xl border-2 border-white">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <span class="text-[10px] font-black uppercase tracking-wider text-zootopia-carrot bg-amber-100 px-2.5 py-0.5 rounded-full">
+            Live Attendance Counter
+          </span>
+          <h3 class="text-xl font-zootopia font-black text-zootopia-navy mt-1">
+            Rekap Kehadiran Tamu
+          </h3>
+        </div>
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-400 to-blue-600 text-white flex items-center justify-center shadow-md">
+          <i class="fa-solid fa-chart-pie text-xl"></i>
+        </div>
+      </div>
+
+      <!-- Statistics Grid -->
+      <div class="grid grid-cols-2 gap-3 mb-6">
+        <!-- Hadir Box -->
+        <div class="bg-gradient-to-b from-emerald-50 to-emerald-100/70 border-2 border-emerald-300 p-4 rounded-2xl text-center shadow-sm">
+          <div class="flex items-center justify-center space-x-1 text-emerald-700 mb-1">
+            <i class="fa-solid fa-circle-check text-xs"></i>
+            <span class="text-xs font-black uppercase">Total Hadir</span>
+          </div>
+          <div class="text-3xl font-zootopia font-black text-emerald-800" id="count-hadir">
+            0
+          </div>
+          <span class="text-[10px] font-bold text-emerald-700" id="count-pax">
+            (0 Orang / Pax)
+          </span>
+        </div>
+
+        <!-- Tidak Hadir Box -->
+        <div class="bg-gradient-to-b from-rose-50 to-rose-100/70 border-2 border-rose-300 p-4 rounded-2xl text-center shadow-sm">
+          <div class="flex items-center justify-center space-x-1 text-rose-700 mb-1">
+            <i class="fa-solid fa-circle-xmark text-xs"></i>
+            <span class="text-xs font-black uppercase">Tidak Hadir</span>
+          </div>
+          <div class="text-3xl font-zootopia font-black text-rose-800" id="count-tidak">
+            0
+          </div>
+          <span class="text-[10px] font-bold text-rose-700">
+            Tamu Berhalangan
+          </span>
+        </div>
+      </div>
+
+      <!-- Wishes Stream / Guestbook List -->
+      <div>
+        <h4 class="text-xs font-black uppercase tracking-wider text-slate-700 mb-3 flex items-center justify-between">
+          <span class="flex items-center space-x-1.5">
+            <i class="fa-solid fa-comments text-amber-500"></i>
+            <span>Doa & Pesan Tamu</span>
+          </span>
+          <span id="wishes-count-badge" class="text-[10px] bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full font-black">0 Ucapan</span>
+        </h4>
+
+        <div id="wishes-list" class="space-y-2.5 max-h-72 overflow-y-auto pr-1">
+          <!-- Dynamically Populated -->
+          <div class="text-center py-8 text-slate-400 text-xs italic">
+            Belum ada ucapan. Jadilah yang pertama mengirimkan doa!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Closing Footer -->
+    <footer class="text-center text-white/90 text-xs space-y-3 pt-6 relative overflow-hidden">
+      <!-- Skyline deco -->
+      <div class="absolute bottom-0 left-0 right-0 h-10 opacity-20 pointer-events-none flex items-end justify-center space-x-1">
+        <div class="w-8 h-6 bg-sky-200"></div><div class="w-6 h-8 bg-amber-200"></div><div class="w-10 h-5 bg-white"></div><div class="w-7 h-7 bg-sky-200"></div><div class="w-9 h-6 bg-amber-100"></div>
+      </div>
+      <div class="relative flex items-end justify-center space-x-3 mb-2">
+        <img src="assets/judy-solo.webp" class="w-20 h-20 object-contain drop-shadow-xl" loading="lazy" alt="">
+        <div class="w-11 h-11 bg-gradient-to-tr from-amber-400 to-orange-500 text-zootopia-navy rounded-full flex items-center justify-center shadow-lg"><i class="fa-solid fa-paw text-white"></i></div>
+        <img src="assets/nick-solo.webp" class="w-20 h-20 object-contain drop-shadow-xl" loading="lazy" alt="">
+      </div>
+      <p class="font-zootopia font-black text-base text-amber-200 relative">
+        Keluarga Besar Allisya & Evelyn
+      </p>
+      <p class="text-sky-100 text-[11px] max-w-xs mx-auto leading-relaxed relative">
+        Merupakan suatu kehormatan dan kebahagiaan tak terhingga bagi kami atas kehadiran serta doa restu Bapak/Ibu/Sahabat sekalian.
+      </p>
+      <p class="text-[10px] text-sky-300/60 pt-2 font-mono relative">
+        Paradise Serpong City 2 • Zootopia Celebration 2026
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- Sticky RSVP Dock (Modern) -->
+  <div id="sticky-dock" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 hidden w-[92%] max-w-md">
+    <div class="bg-white/95 backdrop-blur-xl border-2 border-amber-300 rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.3)] p-3 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <img src="assets/judy-nick-duo.webp" class="w-12 h-12 object-contain drop-shadow" loading="lazy" alt="">
+        <div>
+          <p class="text-xs font-zootopia font-black text-zootopia-navy leading-none">Konfirmasi?</p>
+          <p class="text-[10px] font-bold text-slate-500">Hadir / Tidak Hadir</p>
+        </div>
+      </div>
+      <a href="#rsvp-section" class="px-4 py-2 bg-gradient-to-r from-amber-400 to-orange-500 text-zootopia-navy rounded-xl text-xs font-black shadow">RSVP</a>
+    </div>
+  </div>
+
+  <!-- Toast Notification Box -->
+  <div id="toast-notif" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform -translate-y-24 opacity-0 transition-all duration-300 max-w-xs w-full px-4 pointer-events-none">
+    <div id="toast-box" class="flex items-center space-x-3 p-4 bg-white text-slate-800 rounded-2xl shadow-2xl border-2 border-amber-300">
+      <div id="toast-icon" class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 text-base">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <div class="flex-1">
+        <p id="toast-title" class="font-zootopia font-black text-xs text-slate-800">Berhasil</p>
+        <p id="toast-desc" class="text-[11px] text-slate-600">Konfirmasi Anda telah tersimpan.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- 1. Three.js Festive 3D Ambient Scene ---
+    let scene, camera, renderer, crystalGroup, particles;
+
+    function initThreeScene() {
+      const canvas = document.getElementById('threejs-canvas');
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 30;
+
+      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // 3D Floating Polyhedral Crystals (Savanna Gold & Judy Blue)
+      crystalGroup = new THREE.Group();
+      const geometries = [
+        new THREE.OctahedronGeometry(1.2, 0),
+        new THREE.TetrahedronGeometry(1.0, 0),
+        new THREE.IcosahedronGeometry(1.1, 0)
+      ];
+
+      const colors = [0xf59e0b, 0x38bdf8, 0xf43f5e, 0xfacc15, 0x10b981];
+
+      for (let i = 0; i < 28; i++) {
+        const geom = geometries[i % geometries.length];
+        const mat = new THREE.MeshStandardMaterial({
+          color: colors[i % colors.length],
+          roughness: 0.2,
+          metalness: 0.8,
+          wireframe: i % 3 === 0
+        });
+        const mesh = new THREE.Mesh(geom, mat);
+        mesh.position.set(
+          (Math.random() - 0.5) * 50,
+          (Math.random() - 0.5) * 60,
+          (Math.random() - 0.5) * 30
+        );
+        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+        mesh.scale.setScalar(0.7 + Math.random() * 0.9);
+        mesh.userData = {
+          rotSpeedX: (Math.random() - 0.5) * 0.02,
+          rotSpeedY: (Math.random() - 0.5) * 0.02,
+          floatSpeed: 0.005 + Math.random() * 0.01,
+          initY: mesh.position.y
+        };
+        crystalGroup.add(mesh);
+      }
+      scene.add(crystalGroup);
+
+      // Sparkling Starfield Particles
+      const particleCount = 120;
+      const particleGeo = new THREE.BufferGeometry();
+      const positions = new Float32Array(particleCount * 3);
+      for (let i = 0; i < particleCount * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 60;
+        positions[i + 1] = (Math.random() - 0.5) * 70;
+        positions[i + 2] = (Math.random() - 0.5) * 35;
+      }
+      particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const particleMat = new THREE.PointsMaterial({
+        color: 0xfef08a,
+        size: 0.6,
+        transparent: true,
+        opacity: 0.85
+      });
+      particles = new THREE.Points(particleGeo, particleMat);
+      scene.add(particles);
+
+      // Lighting
+      const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+      scene.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0xffedd5, 1.8);
+      dirLight.position.set(10, 20, 15);
+      scene.add(dirLight);
+
+      window.addEventListener('resize', onWindowResize);
+      animateThree();
+    }
+
+    function onWindowResize() {
+      if (!camera || !renderer) return;
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    let clock = new THREE.Clock();
+    function animateThree() {
+      requestAnimationFrame(animateThree);
+      const elapsed = clock.getElapsedTime();
+
+      if (crystalGroup) {
+        crystalGroup.rotation.y = elapsed * 0.05;
+        crystalGroup.children.forEach(mesh => {
+          mesh.rotation.x += mesh.userData.rotSpeedX;
+          mesh.rotation.y += mesh.userData.rotSpeedY;
+          mesh.position.y = mesh.userData.initY + Math.sin(elapsed + mesh.position.x) * 1.5;
+        });
+      }
+
+      if (particles) {
+        particles.rotation.y = elapsed * 0.02;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener('load', () => {
+      // Disable Three.js on mobile/low-motion for performance
+      if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const c = document.getElementById('threejs-canvas');
+        if (c) c.style.display = 'none';
+        return;
+      }
+      try {
+        initThreeScene();
+      } catch (e) {
+        console.warn("Three.js initialization skipped:", e);
+      }
+    });
+  </script>
+
+  <script>
+    // --- 2. OST BGM + Web Audio Fanfare ---
+    let isSoundMuted = false;
+    const bgmOst = document.getElementById('bgm-ost');
+    if (bgmOst) {
+      bgmOst.volume = 0.55;
+      bgmOst.loop = true;
+    }
+    const btnSoundToggle = document.getElementById('btn-sound-toggle');
+    const soundIcon = document.getElementById('sound-icon');
+
+    // Coba autoplay halus saat welcome modal tampil (akan dipause jika browser block, lalu diputar via klik)
+    const tryAutoPlayOST = () => {
+      if (!bgmOst || isSoundMuted) return;
+      bgmOst.play().then(() => {
+        isSoundMuted = false;
+        soundIcon.className = "fa-solid fa-volume-high text-amber-600 text-sm";
+        btnSoundToggle.classList.add('sound-pulse');
+      }).catch(() => {
+        // Autoplay diblokir - tunggu interaksi user (Buka Petualangan)
+      });
+    };
+    // Coba setelah load + delay kecil
+    window.addEventListener('load', () => setTimeout(tryAutoPlayOST, 800));
+
+    btnSoundToggle.addEventListener('click', () => {
+      isSoundMuted = !isSoundMuted;
+      if (isSoundMuted) {
+        soundIcon.className = "fa-solid fa-volume-xmark text-slate-400 text-sm";
+        btnSoundToggle.classList.remove('sound-pulse');
+        if (bgmOst) bgmOst.pause();
+      } else {
+        soundIcon.className = "fa-solid fa-volume-high text-amber-600 text-sm";
+        btnSoundToggle.classList.add('sound-pulse');
+        if (bgmOst) bgmOst.play().catch(()=>{});
+        playFanfareSound();
+      }
+    });
+
+    const playFanfareSound = () => {
+      if (isSoundMuted) return;
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        const now = ctx.currentTime;
+
+        const playNote = (freq, start, duration, type = 'triangle') => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, start);
+          gain.gain.setValueAtTime(0.25, start);
+          gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(start);
+          osc.stop(start + duration);
+        };
+
+        // Zootopia Festive Motif (C5, E5, G5, A5, C6)
+        playNote(523.25, now + 0.00, 0.22, 'sine');
+        playNote(659.25, now + 0.12, 0.20, 'triangle');
+        playNote(783.99, now + 0.24, 0.22, 'triangle');
+        playNote(880.00, now + 0.36, 0.25, 'triangle');
+        playNote(1046.50, now + 0.50, 0.45, 'sine');
+      } catch (e) {
+        console.log("Audio waiting for user gesture:", e);
+      }
+    };
+
+    // --- 3. Open Invitation Handler & Welcome Curtain ---
+    const welcomeModal = document.getElementById('welcome-modal');
+    const btnOpenInvitation = document.getElementById('btn-open-invitation');
+
+    btnOpenInvitation.addEventListener('click', () => {
+      // Play OST BGM saat welcome dibuka (user gesture - pasti allowed)
+      if (bgmOst) {
+        bgmOst.volume = 0.55;
+        isSoundMuted = false;
+        soundIcon.className = "fa-solid fa-volume-high text-amber-600 text-sm";
+        btnSoundToggle.classList.add('sound-pulse');
+        bgmOst.play().catch(e => console.log('BGM play blocked:', e));
+        // Fade-in volume
+        bgmOst.volume = 0;
+        let v = 0;
+        const fade = setInterval(() => {
+          v += 0.05;
+          if (v >= 0.55) { bgmOst.volume = 0.55; clearInterval(fade); }
+          else bgmOst.volume = v;
+        }, 120);
+      }
+      playFanfareSound();
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 85,
+          origin: { y: 0.6 }
+        });
+        setTimeout(() => {
+          confetti({
+            particleCount: 50,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 }
+          });
+          confetti({
+            particleCount: 50,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 }
+          });
+        }, 300);
+      }
+
+      // Smoothly hide welcome modal
+      welcomeModal.classList.add('opacity-0', 'pointer-events-none', '-translate-y-8', 'scale-95');
+      setTimeout(() => {
+        welcomeModal.style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 700);
+    });
+
+    // --- 4. Countdown Timer for 27 September 2026, 15:30 WIB ---
+    const targetEventDate = new Date('2026-09-27T15:30:00+07:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetEventDate - now;
+
+      if (distance < 0) {
+        document.getElementById('days').innerText = '00';
+        document.getElementById('hours').innerText = '00';
+        document.getElementById('minutes').innerText = '00';
+        document.getElementById('seconds').innerText = '00';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = String(days).padStart(2, '0');
+      document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+      document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+
+      // Progress bar carrot (90 days window)
+      const startDate = new Date('2026-06-29T15:30:00+07:00').getTime();
+      const total = targetEventDate - startDate;
+      const elapsed = now - startDate;
+      let pct = Math.round((elapsed / total) * 100);
+      pct = Math.max(5, Math.min(100, pct));
+      const bar = document.getElementById('progress-bar');
+      const label = document.getElementById('progress-label');
+      if (bar) bar.style.width = pct + '%';
+      if (label) label.innerText = pct + '% menuju 27 Sep';
+      if (distance < 0 && bar) bar.style.width = '100%';
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // --- 4b. Scroll Reveal Modern ---
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('in');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.glass-card, header, footer').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+
+    // --- 4c. Sticky RSVP Dock ---
+    const stickyDock = document.getElementById('sticky-dock');
+    const rsvpSection = document.getElementById('rsvp-section');
+    window.addEventListener('scroll', () => {
+      if (!stickyDock || !rsvpSection) return;
+      const rect = rsvpSection.getBoundingClientRect();
+      const pastHero = window.scrollY > 400;
+      const beforeRSVP = rect.top > window.innerHeight;
+      if (pastHero && beforeRSVP) stickyDock.classList.remove('hidden');
+      else stickyDock.classList.add('hidden');
+    });
+
+    // --- 4d. Audio Visualizer subtle (keep icon, add pulse) ---
+    const updateVisualizer = () => {
+      if (!bgmOst || isSoundMuted || bgmOst.paused) {
+        btnSoundToggle.classList.remove('sound-pulse');
+      } else {
+        btnSoundToggle.classList.add('sound-pulse');
+      }
+    };
+    if (bgmOst) {
+      bgmOst.addEventListener('play', updateVisualizer);
+      bgmOst.addEventListener('pause', updateVisualizer);
+    }
+
+    // --- 5. Toast Notification Helper ---
+    function showToast(title, desc, isSuccess = true) {
+      const toast = document.getElementById('toast-notif');
+      const toastTitle = document.getElementById('toast-title');
+      const toastDesc = document.getElementById('toast-desc');
+      const toastIcon = document.getElementById('toast-icon');
+
+      toastTitle.innerText = title;
+      toastDesc.innerText = desc;
+
+      if (isSuccess) {
+        toastIcon.className = "w-9 h-9 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 text-base";
+        toastIcon.innerHTML = '<i class="fa-solid fa-check"></i>';
+      } else {
+        toastIcon.className = "w-9 h-9 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center flex-shrink-0 text-base";
+        toastIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+      }
+
+      toast.classList.remove('-translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('-translate-y-24', 'opacity-0');
+      }, 4000);
+    }
+
+    // --- 6. Copy Address Handler ---
+    document.getElementById('btn-copy-address').addEventListener('click', () => {
+      const addressText = "Pos Cluster Ecoscape, Paradise Serpong City 2, Gunung Sindur, Bogor";
+      const tempInput = document.createElement('input');
+      tempInput.value = addressText;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      showToast("Alamat Disalin", "Alamat lokasi berhasil disalin ke papan klip!");
+    });
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'zootopia-allisya-evelyn';
+
+    // UI elements
+    const radioHadir = document.getElementById('radio-hadir');
+    const radioTidak = document.getElementById('radio-tidak');
+    const paxWrapper = document.getElementById('pax-wrapper');
+    const locationCard = document.getElementById('location-card');
+    const gmapsIframe = document.getElementById('gmaps-iframe');
+    const mapLoading = document.getElementById('map-loading');
+    const btnSubmitRSVP = document.getElementById('btn-submit-rsvp');
+
+    // Google Maps Embed URL for Pos Cluster Ecoscape Paradise Serpong City 2
+    const MAP_EMBED_URL = "https://maps.google.com/maps?q=-6.3930649,106.6668097&hl=id&z=17&output=embed";
+
+    let mapLoadedOnce = false;
+
+    // Show Location Map smoothly
+    function showLocationMap() {
+      locationCard.classList.remove('hidden');
+
+      if (!mapLoadedOnce || !gmapsIframe.src) {
+        gmapsIframe.onload = () => {
+          if (mapLoading) mapLoading.style.display = 'none';
+        };
+        gmapsIframe.src = MAP_EMBED_URL;
+        mapLoadedOnce = true;
+      }
+
+      setTimeout(() => {
+        locationCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 200);
+    }
+
+    // Hide Location Card
+    function hideLocationMap() {
+      locationCard.classList.add('hidden');
+    }
+
+    // Radio button interactive toggle - MAP TIDAK DIBUKA DI SINI (hanya setelah Kirim)
+    radioHadir.addEventListener('change', () => {
+      paxWrapper.classList.remove('hidden');
+      btnSubmitRSVP.innerHTML = '<span>Kirim Konfirmasi Kehadiran</span><i class="fa-solid fa-paper-plane text-sm"></i>';
+      btnSubmitRSVP.className = "w-full py-4 px-6 font-zootopia text-base font-black text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 rounded-2xl shadow-xl hover:shadow-2xl active:scale-95 transition-all duration-200 flex items-center justify-center space-x-2 border-2 border-emerald-300";
+      // JANGAN buka peta di sini - tunggu sampai form benar-benar dikirim (submit)
+      // Pastikan peta tetap hidden jika user baru klik Hadir
+      hideLocationMap();
+    });
+
+    radioTidak.addEventListener('change', () => {
+      paxWrapper.classList.add('hidden');
+      btnSubmitRSVP.innerHTML = '<span>Kirim Doa Restu</span><i class="fa-solid fa-heart text-sm"></i>';
+      btnSubmitRSVP.className = "w-full py-4 px-6 font-zootopia text-base font-black text-white bg-gradient-to-r from-rose-600 via-pink-600 to-rose-700 rounded-2xl shadow-xl hover:shadow-2xl active:scale-95 transition-all duration-200 flex items-center justify-center space-x-2 border-2 border-rose-300";
+      // Hide location card when Tidak Hadir is selected
+      hideLocationMap();
+    });
+
+    // Attendance counter elements
+    const countHadirEl = document.getElementById('count-hadir');
+    const countPaxEl = document.getElementById('count-pax');
+    const countTidakEl = document.getElementById('count-tidak');
+    const wishesListEl = document.getElementById('wishes-list');
+    const wishesBadgeEl = document.getElementById('wishes-count-badge');
+
+    const characterAvatars = [
+      'assets/judy-solo.webp',
+      'assets/nick-solo.webp',
+      'assets/flash.webp',
+      'assets/clawhauser.webp',
+      'assets/judy-nick-duo.webp'
+    ];
+    const avatarColors = [
+      'bg-blue-50 border-blue-300',
+      'bg-amber-50 border-amber-300',
+      'bg-stone-50 border-stone-300',
+      'bg-orange-50 border-orange-300',
+      'bg-sky-50 border-sky-300'
+    ];
+
+    function renderRSVPData(items) {
+      let totalHadir = 0;
+      let totalPax = 0;
+      let totalTidak = 0;
+
+      items.forEach(item => {
+        if (item.status === 'Hadir') {
+          totalHadir += 1;
+          totalPax += parseInt(item.pax || 1, 10);
+        } else {
+          totalTidak += 1;
+        }
+      });
+
+      countHadirEl.innerText = totalHadir;
+      countPaxEl.innerText = `(${totalPax} Orang / Pax)`;
+      countTidakEl.innerText = totalTidak;
+      wishesBadgeEl.innerText = `${items.length} Ucapan`;
+
+      if (items.length === 0) {
+        wishesListEl.innerHTML = `
+          <div class="text-center py-8 text-slate-400 text-xs italic">
+            Belum ada ucapan. Jadilah yang pertama mengirimkan doa!
+          </div>
+        `;
+        return;
+      }
+
+      // Sort newest first
+      const sorted = [...items].sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+      wishesListEl.innerHTML = sorted.map((item, idx) => {
+        const charImg = characterAvatars[idx % characterAvatars.length];
+        const color = avatarColors[idx % avatarColors.length];
+        const isHadir = item.status === 'Hadir';
+
+        return `
+          <div class="p-3.5 bg-white rounded-2xl border border-slate-100 shadow-sm flex items-start space-x-3 transition hover:shadow-md">
+            <div class="w-11 h-11 rounded-2xl ${color} border flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden bg-white p-1">
+              <img src="${charImg}" alt="avatar" class="w-full h-full object-contain">
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between mb-1">
+                <h5 class="text-xs font-zootopia font-black text-slate-800 truncate">${item.name}</h5>
+                <span class="text-[10px] px-2.5 py-0.5 rounded-full font-black ${isHadir ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-rose-50 text-rose-700 border border-rose-200'}">
+                  ${isHadir ? `Hadir (${item.pax || 1} pax)` : 'Tidak Hadir'}
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">${item.wishes ? item.wishes : '<span class="italic text-slate-400">Turut mendoakan kelancaran dan keberkahan acara.</span>'}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    let firestoreDB = null;
+    let fallbackData = [];
+
+    async function setupStorage() {
+      let isCloudActive = false;
+
+      if (typeof __firebase_config !== 'undefined') {
+        try {
+          const config = JSON.parse(__firebase_config);
+          const app = initializeApp(config);
+          const auth = getAuth(app);
+          firestoreDB = getFirestore(app);
+
+          if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+            await signInWithCustomToken(auth, __initial_auth_token);
+          } else {
+            await signInAnonymously(auth);
+          }
+
+          const rsvpCol = collection(firestoreDB, 'artifacts', appId, 'public', 'data', 'rsvp_responses');
+
+          onSnapshot(rsvpCol, (snapshot) => {
+            const list = [];
+            snapshot.forEach(doc => list.push({ id: doc.id, ...doc.data() }));
+            if (list.length > 0) {
+              renderRSVPData(list);
+            } else {
+              renderRSVPData(fallbackData);
+            }
+          }, (error) => {
+            console.warn("Firestore listener fallback:", error);
+            renderRSVPData(fallbackData);
+          });
+
+          isCloudActive = true;
+        } catch (err) {
+          console.warn("Storage fallback to memory:", err);
+          isCloudActive = false;
+        }
+      }
+
+      if (!isCloudActive) {
+        renderRSVPData(fallbackData);
+      }
+    }
+
+    // RSVP form submission
+    const rsvpForm = document.getElementById('rsvp-form');
+
+    rsvpForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nameInput = document.getElementById('guest-name');
+      const wishesInput = document.getElementById('guest-wishes');
+      const paxInput = document.getElementById('guest-pax');
+      const selectedRadio = document.querySelector('input[name="attendance"]:checked');
+
+      if (!selectedRadio) {
+        showToast("Pilih Kehadiran", "Silakan pilih salah satu: Hadir atau Tidak Hadir.", false);
+        return;
+      }
+
+      const selectedStatus = selectedRadio.value;
+      const name = nameInput.value.trim();
+      const wishes = wishesInput.value.trim();
+      const pax = selectedStatus === 'Hadir' ? parseInt(paxInput.value, 10) : 0;
+
+      if (!name) {
+        showToast("Nama Wajib Diisi", "Mohon cantumkan nama Anda atau keluarga.", false);
+        return;
+      }
+
+      btnSubmitRSVP.disabled = true;
+      btnSubmitRSVP.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Menyimpan Konfirmasi...</span>';
+
+      const entry = {
+        name: name,
+        status: selectedStatus,
+        pax: pax,
+        wishes: wishes,
+        timestamp: Date.now()
+      };
+
+      try {
+        if (firestoreDB) {
+          const rsvpCol = collection(firestoreDB, 'artifacts', appId, 'public', 'data', 'rsvp_responses');
+          await addDoc(rsvpCol, entry);
+        } else {
+          fallbackData.unshift(entry);
+          renderRSVPData(fallbackData);
+        }
+
+        if (selectedStatus === 'Hadir') {
+          showLocationMap();
+          playFanfareSound();
+          if (typeof confetti === 'function') {
+            confetti({ particleCount: 70, spread: 80, origin: { y: 0.7 } });
+          }
+          showToast("Konfirmasi Diterima!", `Peta dan petunjuk lokasi acara telah terbuka untuk ${name}.`);
+        } else {
+          hideLocationMap();
+          showToast("Terima Kasih!", `Doa dan restu dari ${name} telah kami catat dengan hangat.`);
+        }
+
+        nameInput.value = '';
+        wishesInput.value = '';
+      } catch (err) {
+        console.error("Gagal mengirim RSVP:", err);
+        showToast("Pengiriman Gagal", "Silakan coba lagi beberapa saat lagi.", false);
+      } finally {
+        btnSubmitRSVP.disabled = false;
+        btnSubmitRSVP.innerHTML = selectedStatus === 'Hadir'
+          ? '<span>Kirim Konfirmasi Kehadiran</span><i class="fa-solid fa-paper-plane text-sm"></i>'
+          : '<span>Kirim Doa Restu</span><i class="fa-solid fa-heart text-sm"></i>';
+      }
+    });
+
+    setupStorage();
+  </script>
+</body>
+</html>
